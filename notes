@@ -1,0 +1,31 @@
+root folder : ros2_ws
+package build : colcon build --packages-select my_py_pkg
+source : source install/setup.bash
+
+
+
+run:
+Publisher: ros2 run my_py_pkg robot_news_station
+ros2 run my_py_pkg robot_news_station --ros-args -r __node:=station2
+
+
+subscription: ros2 run my_py_pkg smartphone
+
+
+Topic:
+ros2 topic list
+ros2 topic info /robot_news
+ros2 topic echo /robot_news
+
+ros2 topic hz /robot_news
+ros2 topic bw /robot_news
+ros2 topic pub -r 5 /robot_news example_interfaces/msg/String "{data: 'Hello from the terminal' }"
+
+server:
+ros2 run my_py_pkg add_two_ints_server
+
+Client : 
+ros2 run my_py_pkg add_two_ints_client
+
+
+
